@@ -24,7 +24,7 @@ pipeline {
             dir('worker'){
               sh 'env'
               sh 'ls -ltr /root/.m2'
-              sh 'cat /root/.m2/settings.xml'
+              sh 'ls -ltr /root/.m2/settings.xml'
               sh 'mvn -s /root/.m2/settings.xml compile'
               
             }
