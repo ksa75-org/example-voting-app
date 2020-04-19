@@ -3,7 +3,7 @@ pipeline {
    agent {
        docker {
            image 'maven:3-alpine'
-           args '-v $HOME/.m2:/root/.m2 --env JAVA_OPTS="-Dhttp.proxyHost=172.17.7.137 -Dhttp.proxyPort=3129 -Dhttps.proxyHost=172.17.7.137 -Dhttps.proxyPort=3129" --env http_proxy="http://172.17.7.137:3129/" --env  https_proxy="http://172.17.7.137:3129/"'
+           args '-v $HOME/.m2:/root/.m2  $HOME:/my:ro --env JAVA_OPTS="-Dhttp.proxyHost=172.17.7.137 -Dhttp.proxyPort=3129 -Dhttps.proxyHost=172.17.7.137 -Dhttps.proxyPort=3129" --env http_proxy="http://172.17.7.137:3129/" --env  https_proxy="http://172.17.7.137:3129/"'
          }
    }
 
@@ -19,9 +19,9 @@ pipeline {
               sh 'id'
               sh 'pwd'
               sh 'env'
-              sh 'ls -ltra /root/.m2/'
+              sh 'ls -ltra /my'
               //sh 'cat /root/.m2/settings.xml'
-              sh 'mvn -s /root/.m2/settings.xml compile'
+              sh 'mvn -s /my/settings.xml compile'
               
             }
          }
