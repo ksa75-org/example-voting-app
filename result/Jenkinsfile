@@ -32,7 +32,7 @@ pipeline {
             }            
          }
       }
-      
+   }      
    post{
        always{
            echo 'Build pipeline for result is completed'
