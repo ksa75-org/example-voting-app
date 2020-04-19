@@ -7,12 +7,6 @@ pipeline {
          }
    }
 
-//   environment{
-//       JAVA_OPTS = "-Dhttp.proxyHost=172.17.7.137 -Dhttp.proxyPort=3129 -Dhttps.proxyHost=172.17.7.137 -Dhttps.proxyPort=3129"
-//       http_proxy = "http://172.17.7.137:3129/"
-//       https_proxy = "http://172.17.7.137:3129/"
-//     }
-
 
    stages {
       stage('build') {
@@ -23,7 +17,7 @@ pipeline {
             echo 'Compiling worker app'
             dir('worker'){
               sh 'env'
-              sh 'ls -ltr /root/.m2'
+              sh 'ls -ltra /root/.m2/'
               //sh 'cat /root/.m2/settings.xml'
               sh 'mvn -s /root/.m2/settings.xml compile'
               
