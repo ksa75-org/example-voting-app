@@ -3,15 +3,15 @@ pipeline {
    agent {
        docker {
            image 'maven:3-alpine'
-           args '-v $HOME/.m2:/root/.m2 -v $HOME/settings.xml:/root/settings.xml:ro --env JAVA_OPTS="-Dhttp.proxyHost=172.17.7.137 -Dhttp.proxyPort=3129 -Dhttps.proxyHost=172.17.7.137 -Dhttps.proxyPort=3129" -env http_proxy="http://172.17.7.137:3129/" -env  https_proxy="http://172.17.7.137:3129/"'
+           args '-v $HOME/.m2:/root/.m2 -v $HOME/settings.xml:/root/settings.xml:ro --env JAVA_OPTS="-Dhttp.proxyHost=172.17.7.137 -Dhttp.proxyPort=3129 -Dhttps.proxyHost=172.17.7.137 -Dhttps.proxyPort=3129" --env http_proxy="http://172.17.7.137:3129/" --env  https_proxy="http://172.17.7.137:3129/"'
          }
    }
 
-   environment{
-       JAVA_OPTS = "-Dhttp.proxyHost=172.17.7.137 -Dhttp.proxyPort=3129 -Dhttps.proxyHost=172.17.7.137 -Dhttps.proxyPort=3129"
-       http_proxy = "http://172.17.7.137:3129/"
-       https_proxy = "http://172.17.7.137:3129/"
-     }
+//   environment{
+//       JAVA_OPTS = "-Dhttp.proxyHost=172.17.7.137 -Dhttp.proxyPort=3129 -Dhttps.proxyHost=172.17.7.137 -Dhttps.proxyPort=3129"
+//       http_proxy = "http://172.17.7.137:3129/"
+//       https_proxy = "http://172.17.7.137:3129/"
+//     }
 
 
    stages {
