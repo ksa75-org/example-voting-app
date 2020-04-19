@@ -1,9 +1,12 @@
 pipeline {
-   agent any
 
-   tools{
-    maven 'Maven 3.6.3'
+   agent {
+       docker {
+           image 'maven:3-alpine'
+           args '-v /srv/jenkins/jenkins_home/.m2:/root/.m2  -v /srv/jenkins/jenkins_home/settings.xml:/my/settings.xml:ro --env JAVA_OPTS="-Dhttp.proxyHost=172.17.7.137 -Dhttp.proxyPort=3129 -Dhttps.proxyHost=172.17.7.137 -Dhttps.proxyPort=3129" --env http_proxy="http://172.17.7.137:3129/" --env  https_proxy="http://172.17.7.137:3129/"'
+         }
    }
+
 
    stages {
       stage('build') {
@@ -13,7 +16,7 @@ pipeline {
          steps {
             echo 'Compiling worker app'
             dir('worker'){
-              sh 'mvn compile'
+              sh 'mvn -s /my/settings.xml compile'
             }
          }
       }
@@ -25,7 +28,7 @@ pipeline {
          steps {
             echo 'Running Unit Tests on worker app'
             dir('worker'){
-              sh 'mvn clean test'
+              sh 'mvn -s /my/settings.xml clean test'
             }            
          }
       }
@@ -38,7 +41,7 @@ pipeline {
          steps {
             echo 'Building worker app'
             dir('worker'){
-              sh 'mvn package -Dskiptests'
+              sh 'mvn -s /my/settings.xml package -Dskiptests'
             }            
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
          }

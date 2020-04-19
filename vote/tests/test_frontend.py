@@ -20,7 +20,7 @@ class VoteUnitTest(unittest.TestCase):
         """Assert that version is set"""
         result = self.app.get('/')
         assert 'Version' in str(result.data)
-
+#
     def test_processed_by_is_set(self):
         """Assert that processed by string is set"""
         result = self.app.get('/')
