@@ -23,7 +23,7 @@ pipeline {
             echo 'Compiling worker app'
             dir('worker'){
               sh 'env'
-              sh 'ls -ltr /root/settings.xml'
+              sh 'ls -ltr /root/.m2'
               sh 'mvn -s /root/settings.xml compile'
               
             }
