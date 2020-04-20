@@ -46,11 +46,9 @@ pipeline {
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
          }
       }
-   }
 
       stage('docker-package') {
          when{
-           branch "master"
            changeset "**/worker/**"
          }
          steps {
