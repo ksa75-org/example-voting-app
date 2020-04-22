@@ -1,0 +1,13 @@
+<settings>
+  <proxies>
+    <proxy>
+      <id>genproxy</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>cache-ace</host>
+      <port>3129</port>
+      <username>icaton\rhn</username>
+      <password>Dnv13qqq</password>
+    </proxy>
+ </proxies>
+</settings>
