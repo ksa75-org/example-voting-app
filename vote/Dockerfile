@@ -6,7 +6,9 @@ WORKDIR /app
 
 # Install our requirements.txt
 ADD requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt
+RUN export http_proxy="http://172.17.7.137:3129/" \
+    && export https_proxy="http://172.17.7.137:3129/" \
+    && pip install -r requirements.txt
 
 # Copy our code from the current folder to /app inside the container
 ADD . /app
