@@ -187,6 +187,18 @@ pipeline {
             }
          }
       }
+
+      stage('deploy to dev') {
+         agent any
+         when{
+           branch 'master'
+         }
+         steps {
+            echo 'Building vote app with docker'
+            sh 'docker-compose up -d'
+         }
+      }
+
    }
 
    post{
