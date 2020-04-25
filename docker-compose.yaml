@@ -10,11 +10,15 @@ redis:
 
 db:
   image: postgres:latest
+  environment:
+     POSTGRES_DB: "db"
+     POSTGRES_HOST_AUTH_METHOD: "trust"
+  
 
 result:
   image: ksa75/result:master
   ports:
-    - 5001:4000
+    - 5001:80
   links:
     - db:db
 
