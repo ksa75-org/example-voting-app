@@ -180,7 +180,7 @@ pipeline {
             echo 'Running Integration Tests on vote app'
             dir('vote'){
               sh 'ls -ltr'
-              sh 'integration_test.sh'
+              sh './integration_test.sh'
             }
          }
       }
