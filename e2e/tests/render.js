@@ -6,7 +6,7 @@ page.onLoadFinished = function() {
   setTimeout(function(){
     console.log(page.content);
     phantom.exit();
-  }, 1000);
+  }, 2000);
 };
 
 page.open(url, function() {
